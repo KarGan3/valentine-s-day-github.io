@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Love Story</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background-image: url('love.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        
+        .input-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            margin: 20px auto;
+            max-width: 500px;
+        }
+        
+        .input-section input {
+            border: 2px solid #ff6b6b;
+            border-radius: 25px;
+            padding: 12px 20px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .input-section input:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+        }
+        
+        .create-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .create-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .story-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            margin: 20px auto;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .story-card::before {
+            content: '❤️';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts"></div>
+    <div class="container">
+        <h1>✨ Your Love Story ✨</h1>
+        <div class="input-section">
+            <input type="text" id="name1" placeholder="Enter Male Name">
+            <input type="text" id="name2" placeholder="Enter Female name">
+            <button onclick="createStory()" class="create-btn">Create Story</button>
+        </div>
+        <div class="story-card" id="storyCard" style="display: none;">
+            <div class="names"></div>
+            <p class="quote"></p>
+            <div class="compatibility">
+                <p>Love Compatibility: <span id="compatibilityScore"></span>% 💝</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <button class="share-btn">Share 💌</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Create floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animation = `float ${Math.random() * 3 + 2}s linear infinite`;
+            heart.style.opacity = '0.6';
+            document.querySelector('.floating-hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
